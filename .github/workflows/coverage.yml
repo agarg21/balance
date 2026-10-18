@@ -31,6 +31,9 @@ jobs:
           # diff-diff-canary.yml.
           python -m pip install ".[dev,did]"
 
+      - name: CPU info (fork measurement only)
+        run: nproc; lscpu | grep 'Model name'; python -c "import coverage; print('coverage', coverage.__version__)"
+
       - name: Run tests with coverage
         run: |
           python -m pytest --cov=balance --cov-report=xml --cov-report=html --cov-report=term-missing
